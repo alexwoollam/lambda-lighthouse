@@ -1,0 +1,44 @@
+{
+    "name": "lambda-lighthouse",
+    "version": "1.0.1",
+    "description": "Run Google Chrome Lighthouse on AWS Lambda.",
+    "engines": {
+      "node": "12.x"
+    },
+    "main": "lib/index.js",
+    "files": [
+      "lib"
+    ],
+    "scripts": {
+      "lint": "standard --fix",
+      "pretest": "standard",
+      "build:install": "docker run --rm -v \"$PWD\":/var/task lambci/lambda:build-nodejs12.x bash -c \"rm -rf node_modules && npm install\"",
+      "build": "docker run --rm -v \"$PWD\":/var/task lambci/lambda:build-nodejs12.x bash -c \"rm -f *.zip && zip lighthouse-lambda.zip -r lib node_modules bin test.js package.json\"",
+      "test": "docker run --rm -v \"$PWD\":/var/task lambci/lambda:nodejs12.x test.handler '{}'",
+      "test:results": "docker run --rm -v \"$PWD\":/var/task --user root lambci/lambda:nodejs12.x test.handler '{\"saveResults\":true}'"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/alexwoollam/lambda-lighthouse.git"
+    },
+    "keywords": [
+      "chrome",
+      "lighthouse",
+      "aws",
+      "lambda",
+      "headless",
+      "serverless",
+      "devtools"
+    ],
+    "author": "Alexander JH King Woollam <alexjhwoolam+npm@gmail.com>",
+    "license": "MIT",
+    "homepage": "https://github.com/alexwoollam/lambda-lighthouse#readme",
+    "dependencies": {
+      "@serverless-chrome/lambda": "^1.0.0-54",
+      "lighthouse": "^3.0.3"
+    },
+    "devDependencies": {
+      "standard": "^11.0.1"
+    }
+  }
+  
