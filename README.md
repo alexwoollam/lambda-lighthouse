@@ -32,7 +32,7 @@ exports.handler = function (event, context, callback) {
 
 ## Support
 
-There is non(!), use at your own peril.
+There is none(!), use at your own peril.
 
 ## Testing locally
 
