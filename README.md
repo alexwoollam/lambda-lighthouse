@@ -39,7 +39,7 @@ There is none(!), use at your own peril.
 You can use [docker-lambda](https://github.com/lambci/docker-lambda) to test your Lambda function locally.
 
 ```bash
-$ docker run --rm -v "$PWD":/var/task lambci/lambda:nodejs8.10 index.handler
+$ docker run --rm -v "$PWD":/var/task lambci/lambda:nodejs12.x index.handler
 ```
 
 
@@ -48,9 +48,9 @@ $ docker run --rm -v "$PWD":/var/task lambci/lambda:nodejs8.10 index.handler
 You can use [docker-lambda](https://github.com/lambci/docker-lambda) to install dependencies and pack your Lambda function.
 
 ```bash
-$ docker run --rm -v "$PWD":/var/task lambci/lambda:build-nodejs8.10 bash -c "rm -rf node_modules && npm install"
+$ docker run --rm -v "$PWD":/var/task lambci/lambda:build-nodejs12.x bash -c "rm -rf node_modules && npm install"
 
-$ docker run --rm -v "$PWD":/var/task lambci/lambda:build-nodejs8.10 bash -c "rm -f *.zip && zip lambda.zip -r node_modules index.js package.json"
+$ docker run --rm -v "$PWD":/var/task lambci/lambda:build-nodejs12.x bash -c "rm -f *.zip && zip lambda.zip -r node_modules index.js package.json"
 ```
 
 - The file will be big (at least 75MB), so you need to upload it to S3 then deploy to Lambda from S3.
